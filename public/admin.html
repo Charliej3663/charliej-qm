@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><title>Administrator · Charliej from WIUT</title>
+<style>
+:root{--bg:#f2f5fb;--card:#fff;--ink:#0f1b33;--mut:#586480;--line:#d9e0ee;--navy:#0a4390;--rose:#d4145a;--ok:#14794a;--okb:#e3f4ec;--tint:#eaf1fb;--warn:#fff3c4}
+@media(prefers-color-scheme:dark){:root{--bg:#0c1224;--card:#141c34;--ink:#e7ecf9;--mut:#9aa7c7;--line:#26304e;--navy:#8db4ff;--ok:#5fd39a;--okb:#11301f;--tint:#1a2542;--warn:#3a3210}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,Segoe UI,sans-serif}
+header{background:#0a4390;color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}header h1{margin:0;font-size:18px}
+main{max-width:1200px;margin:auto;padding:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+input,select,textarea{font:inherit;padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);max-width:100%}textarea{width:100%;min-height:110px}
+button{font:inherit;font-weight:600;border:0;background:var(--navy);color:#fff;padding:10px 14px;border-radius:8px;cursor:pointer;min-height:40px}button.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}button.red{background:var(--rose);color:#fff}button.armed{background:var(--rose);color:#fff;border-color:var(--rose)}
+@media(prefers-color-scheme:dark){button:not(.alt):not(.red):not(.armed){color:#0c1224}}
+.hide{display:none}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:8px;margin-bottom:12px}
+.stat{background:var(--tint);border-radius:10px;padding:8px 12px}.stat b{display:block;font-size:24px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{background:var(--tint);position:sticky;top:0}.sc{overflow-x:auto;max-height:70vh}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}.tabs button.on{background:var(--navy);color:#fff;border-color:var(--navy)}.dot{color:var(--ok);font-weight:700}.mut{color:var(--mut)}#err{color:var(--rose);font-weight:600;min-height:22px}
+.req{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px}.req b.n{font-size:17px}.pill{display:inline-block;padding:1px 8px;border-radius:99px;background:var(--tint);font-size:12px;margin-left:4px}.pill.r{background:var(--rose);color:#fff}
+.codes{background:var(--okb);border:2px solid var(--ok);border-radius:12px;padding:12px;margin-bottom:12px}.codes code{font:700 16px ui-monospace,Consolas,monospace}.codes .it{padding:8px 0;border-bottom:1px solid var(--line)}
+.warn{background:var(--warn);border-radius:8px;padding:8px 12px}
+@media(max-width:640px){main{padding:8px}.card{padding:10px}header h1{font-size:16px}button{padding:10px 12px}table{font-size:13px}}
+</style></head><body>
+<header><h1>Administrator panel · Charliej from WIUT</h1><div id="top" class="hide"><button class="alt" style="color:#fff;border-color:#fff" id="out">Sign out</button></div></header>
+<main>
+<div class="card" id="login" style="max-width:420px;margin:30px auto"><h2 style="margin-top:0">Administrator sign-in</h2><p class="mut">Restricted area. Every attempt is recorded.</p>
+<input id="pw" type="password" placeholder="Administrator password" autocomplete="current-password" style="width:100%"><p><button id="go">Sign in</button></p><div id="err" role="alert"></div></div>
+<div id="app" class="hide">
+<div id="codes" class="codes hide"></div>
+<div class="card row"><select id="days"><option value="1">Last 24 hours</option><option value="3">Last 3 days</option><option value="7">Last 7 days</option><option value="14">Last 14 days</option></select>
+<button id="ref">Refresh</button><label><input type="checkbox" id="auto"> auto-refresh</label><input id="q" placeholder="Search…" style="flex:1;min-width:140px"><button class="alt" id="csv">Export CSV</button><span class="mut" id="stamp"></span></div>
+<div class="stats" id="stats"></div>
+<div class="tabs"><button id="t1">Requests</button><button id="t2" class="alt">Students</button><button id="t3" class="alt">Add students</button><button id="t4" class="alt">Activity</button></div>
+<div id="v1"></div><div id="v2" class="card sc hide"></div>
+<div id="v3" class="hide"><div class="card"><h3 style="margin-top:0">Add one student</h3><div class="row"><input id="an" placeholder="Full name" style="flex:2;min-width:150px"><input id="as" placeholder="Student ID" style="flex:1;min-width:110px"><input id="ag" placeholder="Group" style="width:90px"><button id="add">Create code</button></div></div>
+<div class="card"><h3 style="margin-top:0">Add many students at once</h3><p class="mut">One student per line: <b>Full name, Student ID, Group</b> (group is optional).</p><textarea id="bulk" placeholder="Aziza Karimova, 20231042, CIFS3&#10;Bobur Rashidov, 20230877, CIFS3"></textarea><p><button id="addb">Create codes for all</button></p></div></div>
+<div id="v4" class="card sc hide"></div>
+<p class="mut">Times are Tashkent time (UTC+5). Codes are shown only once, when they are created or reset. Revoking a student stops them immediately.</p></div></main>
+<script>
+(function(){var $=function(i){return document.getElementById(i)};var tok=sessionStorage.getItem('cj_admin')||'',D=null,timer=null;
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function api(b){return fetch('/api/admin',{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+tok},body:JSON.stringify(b)}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(r.status===401&&b.action!=='login'){out();throw new Error(j.error||'Session expired')}if(!r.ok)throw new Error(j.error||'Error');return j})})}
+function fmt(ts){return ts?new Date(ts).toLocaleString('en-GB',{timeZone:'Asia/Tashkent',hour12:false,day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',second:'2-digit'}):'never'}
+var NAMES={login:'Signed in',login_fail:'Wrong code',access_request:'Requested access',app_open:'Opened site',review:'Read lecture page',test_start:'Started test',test_finish:'Finished test',leave:'Left site',admin_login:'ADMIN signed in',admin_fail:'ADMIN wrong password',admin_add:'Admin added student',admin_approve:'Admin approved',admin_reject:'Admin rejected',admin_revoke:'Admin revoked',admin_restore:'Admin restored',admin_reset:'Admin reset code'};
+function det(e){var d=e.d||{};if(e.e==='test_start')return d.mode+' · '+d.lecture+' · '+d.n+' questions · '+d.min+' min allowed';
+if(e.e==='test_finish')return d.mode+': '+d.pct+'% ('+d.got+'/'+d.tot+') · answered '+d.answered+'/'+d.total+' · used '+d.used+' of '+d.min+' min · ends: '+d.why;
+if(e.e==='review')return d.page||'';if(e.e==='leave')return 'was on the site about '+d.min+' min';if(e.e==='access_request')return d.group?'group '+d.group:'';if(String(e.e).indexOf('admin_')===0&&e.sid)return 'student '+e.sid;return ''}
+function show(){$('login').classList.add('hide');$('app').classList.remove('hide');$('top').classList.remove('hide')}
+function out(){tok='';sessionStorage.removeItem('cj_admin');clearInterval(timer);$('app').classList.add('hide');$('top').classList.add('hide');$('login').classList.remove('hide');$('pw').value=''}
+function load(){api({action:'events',days:+$('days').value}).then(function(j){D=j;render()}).catch(function(e){$('stamp').textContent=e.message})}
+function msgText(r){return 'Hi '+r.name+'! Your personal access to Charliej from WIUT (QM exam preparation):\nSite: '+location.origin+'\nStudent ID: '+r.sid+'\nYour code: '+r.code+'\nPlease keep it private. It is only for you.'}
+function showCodes(rows){var h='<b>Codes created. They are shown only now, so send them or copy them before you leave this page.</b>';
+rows.forEach(function(r,i){if(r.error){h+='<div class="it">'+esc(r.name)+' · '+esc(r.sid)+' · <span style="color:var(--rose)">'+esc(r.error)+'</span></div>';return}var m=encodeURIComponent(msgText(r));
+h+='<div class="it"><b>'+esc(r.name)+'</b> · ID '+esc(r.sid)+' · <code>'+esc(r.code)+'</code><div class="row" style="margin-top:6px"><a href="https://wa.me/?text='+m+'" target="_blank" rel="noopener"><button type="button">WhatsApp</button></a><a href="https://t.me/share/url?url='+encodeURIComponent(location.origin)+'&text='+m+'" target="_blank" rel="noopener"><button type="button">Telegram</button></a><button type="button" class="alt" data-copy="'+i+'">Copy message</button></div></div>'});
+h+='<p><button type="button" class="alt" id="copyall">Copy all (name, ID, code)</button> <button type="button" class="alt" id="hidec">Hide</button></p>';var c=$('codes');c.innerHTML=h;c.classList.remove('hide');window.scrollTo({top:0});window._rows=rows;
+$('hidec').onclick=function(){c.classList.add('hide');c.innerHTML=''};
+$('copyall').onclick=function(){cp(rows.filter(function(r){return r.code}).map(function(r){return r.name+' | '+r.sid+' | '+r.code}).join('\n'),this)}}
+function cp(t,b){function ok(){var o=b.textContent;b.textContent='Copied';setTimeout(function(){b.textContent=o},1500)}if(navigator.clipboard)navigator.clipboard.writeText(t).then(ok,function(){fb()});else fb();function fb(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()}}
+function render(){var q=$('q').value.toLowerCase(),ev=D.events,now=D.now,ST=D.students,RQ=D.requests;$('stamp').textContent='Updated '+fmt(now);
+var S={};ST.forEach(function(s){S[s.sid]={sid:s.sid,name:s.name,group:s.group,status:s.status,last:s.lastLogin||0,logins:0,starts:0,fins:0,sc:[],mins:0,ips:{}}});
+ev.forEach(function(e){var s=e.sid&&S[e.sid];if(!s)return;if(e.ts>s.last&&e.e!=='admin_add')s.last=Math.max(s.last,e.ts);if(e.e==='login')s.logins++;if(e.e==='test_start')s.starts++;if(e.e==='test_finish'){s.fins++;if(e.d&&typeof e.d.pct==='number')s.sc.push(e.d.pct)}if(e.e==='leave'&&e.d&&e.d.min)s.mins+=e.d.min;if(e.ip&&(e.e==='login'||e.e==='app_open'))s.ips[e.ip]=1});
+var list=Object.keys(S).map(function(k){return S[k]}).sort(function(a,b){return b.last-a.last}),pend=RQ.filter(function(r){return r.status==='pending'});
+var act=list.filter(function(s){return now-s.last<5*6e4}).length,fins=ev.filter(function(e){return e.e==='test_finish'}),avg=fins.length?Math.round(fins.reduce(function(a,e){return a+(e.d.pct||0)},0)/fins.length):0,bad=ev.filter(function(e){return e.e==='admin_fail'||e.e==='login_fail'}).length;
+$('t1').textContent='Requests'+(pend.length?' ('+pend.length+')':'');
+$('stats').innerHTML='<div class="stat"><b>'+pend.length+'</b>waiting for approval</div><div class="stat"><b>'+list.length+'</b>registered students</div><div class="stat"><b>'+act+'</b>online (last 5 min)</div><div class="stat"><b>'+ev.filter(function(e){return e.e==='test_start'}).length+'</b>tests started</div><div class="stat"><b>'+fins.length+'</b>finished (avg '+avg+'%)</div><div class="stat"><b>'+bad+'</b>failed sign-ins</div>';
+var h='';if(!pend.length)h+='<div class="card mut">No requests are waiting.</div>';
+pend.forEach(function(r){h+='<div class="req card"><b class="n">'+esc(r.name)+'</b> <span class="pill">ID '+esc(r.sid)+'</span>'+(r.group?'<span class="pill">'+esc(r.group)+'</span>':'')+'<div class="mut">Sent '+esc(fmt(r.ts))+(r.note?' · contact: <b>'+esc(r.note)+'</b>':'')+'<br>'+esc(r.ip||'')+' · '+esc(r.ua||'')+'</div><div class="row" style="margin-top:8px"><button data-ap="'+esc(r.key)+'">Approve</button><button class="alt" data-c="1" data-rj="'+esc(r.key)+'">Reject</button></div></div>'});
+var hist=RQ.filter(function(r){return r.status!=='pending'}).slice(0,15);if(hist.length)h+='<div class="card"><b>Recent decisions</b><table>'+hist.map(function(r){return'<tr><td>'+esc(r.name)+'</td><td>'+esc(r.sid)+'</td><td>'+esc(r.status)+(r.collected?' · code collected':r.status==='approved'?' · not collected yet':'')+'</td></tr>'}).join('')+'</table></div>';
+$('v1').innerHTML=h;
+$('v2').innerHTML='<table><tr><th>Student</th><th>ID</th><th>Status</th><th>Last seen</th><th>Sign-ins</th><th>Tests</th><th>Avg</th><th>On site</th><th>IPs</th><th></th></tr>'+list.filter(function(s){return!q||(s.name+' '+s.sid+' '+(s.group||'')).toLowerCase().indexOf(q)>=0}).map(function(s){var a=s.sc.length?Math.round(s.sc.reduce(function(x,y){return x+y},0)/s.sc.length)+'%':'–',n=Object.keys(s.ips).length;
+return'<tr><td>'+esc(s.name)+(s.group?' <span class="pill">'+esc(s.group)+'</span>':'')+(now-s.last<5*6e4?' <span class="dot">● online</span>':'')+'</td><td>'+esc(s.sid)+'</td><td>'+(s.status==='active'?'active':'<b style="color:var(--rose)">revoked</b>')+'</td><td>'+esc(fmt(s.last))+'</td><td>'+s.logins+'</td><td>'+s.fins+'/'+s.starts+'</td><td>'+a+'</td><td>'+s.mins+' min</td><td>'+(n>=4?'<b style="color:var(--rose)" title="Many different addresses: code may be shared">'+n+' ⚠</b>':n)+'</td><td style="white-space:nowrap">'+(s.status==='active'?'<button class="alt" data-c="1" data-rv="'+esc(s.sid)+'">Revoke</button>':'<button data-rs="'+esc(s.sid)+'">Restore</button>')+' <button class="alt" data-c="1" data-rt="'+esc(s.sid)+'">Reset code</button></td></tr>'}).join('')+'</table>'+(list.length?'':'<p class="mut">No students yet. Add them, or approve requests.</p>');
+var fe=ev.filter(function(e){var t=(e.name||'')+' '+(e.sid||'')+' '+(NAMES[e.e]||e.e)+' '+det(e)+' '+(e.ip||'');return!q||t.toLowerCase().indexOf(q)>=0});
+$('v4').innerHTML='<table><tr><th>Time</th><th>Student</th><th>ID</th><th>What happened</th><th>Details</th><th>IP address</th></tr>'+fe.slice(0,1000).map(function(e){return'<tr><td>'+esc(fmt(e.ts))+'</td><td>'+esc(e.name||'')+'</td><td>'+esc(e.sid||'')+'</td><td>'+esc(NAMES[e.e]||e.e)+'</td><td>'+esc(det(e))+'</td><td class="mut">'+esc(e.ip||'')+'</td></tr>'}).join('')+'</table>'+(fe.length?'':'<p class="mut">No events in this period.</p>')}
+function setTab(n){[1,2,3,4].forEach(function(i){$('v'+i).classList.toggle('hide',i!==n);$('t'+i).className=i===n?'on':'alt'})}
+[1,2,3,4].forEach(function(i){$('t'+i).onclick=function(){setTab(i)}});setTab(1);
+function run(b,after){return api(b).then(function(j){if(j.rows&&j.rows.length)showCodes(j.rows);if(after)after();load()}).catch(function(e){$('stamp').textContent=e.message;alert2(e.message)})}
+function alert2(m){var c=$('codes');c.classList.remove('hide');c.style.background='var(--warn)';c.style.borderColor='var(--rose)';c.innerHTML='<b>'+esc(m)+'</b> <button class="alt" onclick="this.parentNode.classList.add(\'hide\');this.parentNode.removeAttribute(\'style\')">OK</button>'}
+document.addEventListener('click',function(e){var el=e.target.closest&&e.target.closest('button');if(!el)return;var g=function(k){return el.getAttribute(k)};
+if(g('data-c')&&!el.classList.contains('armed')){el.classList.add('armed');el.setAttribute('data-o',el.textContent);el.textContent='Tap again to confirm';setTimeout(function(){if(el.classList.contains('armed')){el.classList.remove('armed');el.textContent=g('data-o')}},4000);return}
+if(g('data-ap'))run({action:'approve',key:g('data-ap')});else if(g('data-rj'))run({action:'reject',key:g('data-rj')});else if(g('data-rv'))run({action:'revoke',sid:g('data-rv')});else if(g('data-rs'))run({action:'restore',sid:g('data-rs')});else if(g('data-rt'))run({action:'reset',sid:g('data-rt')});
+else if(g('data-copy')!=null)cp(msgText(window._rows[+g('data-copy')]),el)});
+$('add').onclick=function(){run({action:'add',name:$('an').value,sid:$('as').value,group:$('ag').value},function(){$('an').value='';$('as').value=''})};
+$('addb').onclick=function(){run({action:'bulk',text:$('bulk').value},function(){$('bulk').value=''})};
+$('go').onclick=function(){$('err').textContent='';$('go').disabled=true;api({action:'login',password:$('pw').value}).then(function(j){tok=j.token;sessionStorage.setItem('cj_admin',tok);show();load()}).catch(function(e){$('err').textContent=e.message}).then(function(){$('go').disabled=false})};
+$('pw').onkeydown=function(e){if(e.key==='Enter')$('go').click()};$('out').onclick=out;$('ref').onclick=load;$('days').onchange=load;$('q').oninput=function(){if(D)render()};
+$('auto').onchange=function(){clearInterval(timer);if($('auto').checked)timer=setInterval(load,30000)};
+$('csv').onclick=function(){if(!D)return;var rows=[['time_tashkent','name','student_id','event','details','ip','device']].concat(D.events.map(function(e){return[fmt(e.ts),e.name||'',e.sid||'',NAMES[e.e]||e.e,det(e),e.ip||'',e.ua||'']}));
+var t=rows.map(function(r){return r.map(function(c){c=String(c);if(/^[=+\-@]/.test(c))c="'"+c;return'"'+c.replace(/"/g,'""')+'"'}).join(',')}).join('\n');var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv'}));a.download='activity.csv';a.click()};
+if(tok){show();load()}})();
+</script></body></html>

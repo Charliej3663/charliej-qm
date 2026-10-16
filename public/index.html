@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><title>Charliej from WIUT · Sign in</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f5fb;--card:#fff;--ink:#0f1b33;--mut:#586480;--line:#d9e0ee;--navy:#0a4390;--rose:#d4145a;--ok:#14794a;--okb:#e3f4ec;--tint:#eaf1fb}
+@media(prefers-color-scheme:dark){:root{--bg:#0c1224;--card:#141c34;--ink:#e7ecf9;--mut:#9aa7c7;--line:#26304e;--navy:#8db4ff;--ok:#5fd39a;--okb:#11301f;--tint:#1a2542}}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font:16px/1.55 'Bricolage Grotesque',system-ui,sans-serif;display:flex;flex-direction:column}
+header{background:#0a4390;color:#fff;padding:26px 18px}h1{margin:0;font-size:clamp(32px,7vw,54px);line-height:1;font-weight:800;letter-spacing:-.03em}h1 b{color:#6cc3f5;font-weight:600}
+header p{margin:6px 0 0;opacity:.85}.w{max-width:480px;margin:0 auto;width:100%}
+main{flex:1;padding:18px 16px}.tabs{display:flex;gap:6px;margin-bottom:12px}.tabs button{flex:1;margin:0;background:var(--card);color:var(--ink);border:1px solid var(--line)}.tabs button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+@media(prefers-color-scheme:dark){.tabs button.on{color:#0c1224}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}h2{margin:0 0 4px;font-size:24px}label{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
+input{width:100%;font:inherit;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #2f9fe0;outline-offset:2px}
+button{margin-top:16px;width:100%;border:0;background:var(--navy);color:#fff;font:inherit;font-weight:600;padding:12px;border-radius:10px;cursor:pointer}
+@media(prefers-color-scheme:dark){button{color:#0c1224}}button:disabled{opacity:.6}button.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.msg{min-height:24px;margin-top:12px;color:var(--rose);font-weight:600}.note{font-size:13px;color:var(--mut);margin-top:12px}.hide{display:none}
+.box{background:var(--tint);border-radius:10px;padding:12px 14px;margin-top:12px}.code{font:800 28px/1.2 ui-monospace,Consolas,monospace;letter-spacing:.06em;background:var(--okb);color:var(--ok);padding:14px;border-radius:10px;text-align:center;margin:10px 0;user-select:all}
+footer{text-align:center;padding:16px;font-size:13px;color:var(--mut)}footer a{color:var(--mut)}
+</style></head><body>
+<header><div class="w"><h1>Charliej <b>from WIUT</b></h1><p>Quantitative Methods · exam preparation</p></div></header>
+<main><div class="w">
+<div class="tabs"><button id="t1" class="on" type="button">Sign in</button><button id="t2" type="button">Request access</button></div>
+<form class="card" id="f1"><h2>Sign in</h2><div class="note" style="margin:0">Use your own student ID and the personal code you received. The code is only for you.</div>
+<label for="sid">Student ID</label><input id="sid" maxlength="24" autocomplete="username" required>
+<label for="code">Personal code</label><input id="code" autocomplete="current-password" maxlength="40" placeholder="XXXX-XXXX-XXXX" required>
+<button id="go" type="submit">Enter</button><div class="msg" id="m1" role="alert"></div></form>
+<form class="card hide" id="f2"><h2>Request access</h2><div class="note" style="margin:0">WIUT students only. Your lecturer will check your request and approve it. Then your personal code appears here, on this device.</div>
+<label for="rn">Full name</label><input id="rn" maxlength="60" autocomplete="name" required>
+<label for="rs">Student ID</label><input id="rs" maxlength="24" required>
+<label for="rg">Group (for example CIFS3)</label><input id="rg" maxlength="20">
+<label for="rc">Telegram or phone, so your lecturer can recognise you</label><input id="rc" maxlength="100">
+<button id="rgo" type="submit">Send request</button><div class="msg" id="m2" role="alert"></div></form>
+<div class="card hide" id="st"><h2 id="sth"></h2><div id="stb"></div><button id="chk" type="button" class="alt">Check again</button><button id="new" type="button" class="alt hide">Make a new request</button></div>
+<div class="note" style="text-align:center">Privacy notice: your name, student ID, sign-in times and what you do on the site (pages opened, tests started and finished, scores) are recorded for the course administrators.</div>
+</div></main>
+<footer><a href="/admin.html">Administrator</a></footer>
+<script>
+(function(){var $=function(i){return document.getElementById(i)};
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v)}catch(e){return null}}
+function post(u,b){return fetch(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){return{ok:r.ok,s:r.status,j:j}})})}
+function tab(n){$('t1').className=n===1?'on':'';$('t2').className=n===2?'on':'';$('f1').classList.toggle('hide',n!==1);$('f2').classList.toggle('hide',n!==2||!!ls('cj_ticket'));$('st').classList.toggle('hide',n!==2||!ls('cj_ticket'));if(n===2&&ls('cj_ticket'))status()}
+$('t1').onclick=function(){tab(1)};$('t2').onclick=function(){tab(2)};
+fetch('/api/me').then(function(r){if(r.ok)location.href='/app'}).catch(function(){});
+var s0=ls('cj_sid');if(s0)$('sid').value=s0;
+$('f1').onsubmit=function(e){e.preventDefault();$('go').disabled=true;$('m1').textContent='';
+post('/api/login',{sid:$('sid').value,code:$('code').value}).then(function(x){if(x.ok){ls('cj_sid',$('sid').value.trim());location.href='/app'}else{$('m1').textContent=x.j.error||'Could not sign in.';$('go').disabled=false}}).catch(function(){$('m1').textContent='Network problem. Please try again.';$('go').disabled=false})};
+$('f2').onsubmit=function(e){e.preventDefault();$('rgo').disabled=true;$('m2').textContent='';
+post('/api/request',{name:$('rn').value,sid:$('rs').value,group:$('rg').value,note:$('rc').value}).then(function(x){if(x.ok){ls('cj_ticket',x.j.ticket);ls('cj_sid',$('rs').value.trim());$('sid').value=$('rs').value.trim();tab(2)}else{$('m2').textContent=x.j.error||'Could not send the request.'}$('rgo').disabled=false}).catch(function(){$('m2').textContent='Network problem. Please try again.';$('rgo').disabled=false})};
+function status(){var t=ls('cj_ticket');if(!t)return;$('st').classList.remove('hide');$('f2').classList.add('hide');$('new').classList.add('hide');$('chk').classList.remove('hide');
+post('/api/request-status',{ticket:t}).then(function(x){var h=$('sth'),b=$('stb');
+if(!x.ok){h.textContent='Request not found';b.innerHTML='<p>This device has an old request that no longer exists.</p>';$('new').classList.remove('hide');$('chk').classList.add('hide');return}
+var j=x.j;if(j.status==='pending'){h.textContent='Waiting for approval';b.innerHTML='<p>Your request was sent. Your lecturer will approve it soon. Come back to this page on this device and press <b>Check again</b>.</p>'}
+else if(j.status==='rejected'){h.textContent='Request not approved';b.innerHTML='<p>Your request was not approved. Please contact your lecturer.</p>';$('new').classList.remove('hide');$('chk').classList.add('hide')}
+else if(j.code){h.textContent='Approved!';b.innerHTML='<p>Welcome, '+esc(j.name)+'. This is your personal code. <b>Write it down now: it is shown only once.</b></p><div class="code">'+esc(j.code)+'</div><div class="box">Your student ID: <b>'+esc(j.sid)+'</b></div>';ls('cj_ticket',null);$('sid').value=j.sid;$('code').value=j.code;$('chk').textContent='Go to sign in';$('chk').onclick=function(){tab(1)};}
+else{h.textContent='Approved';b.innerHTML='<p>Your code was already shown on this device. If you lost it, ask your lecturer to reset it.</p>';ls('cj_ticket',null);$('chk').textContent='Go to sign in';$('chk').onclick=function(){tab(1)}}}).catch(function(){$('stb').innerHTML='<p>Network problem. Please try again.</p>'})}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+$('chk').onclick=status;$('new').onclick=function(){ls('cj_ticket',null);tab(2)};
+})();
+</script></body></html>
