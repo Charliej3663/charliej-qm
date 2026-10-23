@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow"><title>Administrator · Charliej from WIUT</title>
+<meta name="robots" content="noindex, nofollow"><link rel="icon" href="data:,">
+<title>Administrator · Charliej from WIUT</title>
 <style>
 :root{--bg:#f2f5fb;--card:#fff;--ink:#0f1b33;--mut:#586480;--line:#d9e0ee;--navy:#0a4390;--rose:#d4145a;--ok:#14794a;--okb:#e3f4ec;--tint:#eaf1fb;--warn:#fff3c4}
 @media(prefers-color-scheme:dark){:root{--bg:#0c1224;--card:#141c34;--ink:#e7ecf9;--mut:#9aa7c7;--line:#26304e;--navy:#8db4ff;--ok:#5fd39a;--okb:#11301f;--tint:#1a2542;--warn:#3a3210}}
@@ -39,10 +40,10 @@ table{border-collapse:collapse;width:100%;font-size:14px}th,td{border-bottom:1px
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function api(b){return fetch('/api/admin',{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+tok},body:JSON.stringify(b)}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(r.status===401&&b.action!=='login'){out();throw new Error(j.error||'Session expired')}if(!r.ok)throw new Error(j.error||'Error');return j})})}
 function fmt(ts){return ts?new Date(ts).toLocaleString('en-GB',{timeZone:'Asia/Tashkent',hour12:false,day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',second:'2-digit'}):'never'}
-var NAMES={login:'Signed in',login_fail:'Wrong code',access_request:'Requested access',app_open:'Opened site',review:'Read lecture page',test_start:'Started test',test_finish:'Finished test',leave:'Left site',admin_login:'ADMIN signed in',admin_fail:'ADMIN wrong password',admin_add:'Admin added student',admin_approve:'Admin approved',admin_reject:'Admin rejected',admin_revoke:'Admin revoked',admin_restore:'Admin restored',admin_reset:'Admin reset code'};
+var NAMES={login:'Signed in',login_fail:'Wrong code',access_request:'Requested access',app_open:'Opened site',review:'Read lecture page',test_start:'Started test',test_finish:'Finished test',leave:'Left site',slides:'Opened lecture slides',admin_login:'ADMIN signed in',admin_fail:'ADMIN wrong password',admin_add:'Admin added student',admin_approve:'Admin approved',admin_reject:'Admin rejected',admin_revoke:'Admin revoked',admin_restore:'Admin restored',admin_reset:'Admin reset code'};
 function det(e){var d=e.d||{};if(e.e==='test_start')return d.mode+' · '+d.lecture+' · '+d.n+' questions · '+d.min+' min allowed';
 if(e.e==='test_finish')return d.mode+': '+d.pct+'% ('+d.got+'/'+d.tot+') · answered '+d.answered+'/'+d.total+' · used '+d.used+' of '+d.min+' min · ends: '+d.why;
-if(e.e==='review')return d.page||'';if(e.e==='leave')return 'was on the site about '+d.min+' min';if(e.e==='access_request')return d.group?'group '+d.group:'';if(String(e.e).indexOf('admin_')===0&&e.sid)return 'student '+e.sid;return ''}
+if(e.e==='review')return d.page||'';if(e.e==='slides')return d.lecture+', slide '+d.slide;if(e.e==='leave')return 'was on the site about '+d.min+' min';if(e.e==='access_request')return d.group?'group '+d.group:'';if(String(e.e).indexOf('admin_')===0&&e.sid)return 'student '+e.sid;return ''}
 function show(){$('login').classList.add('hide');$('app').classList.remove('hide');$('top').classList.remove('hide')}
 function out(){tok='';sessionStorage.removeItem('cj_admin');clearInterval(timer);$('app').classList.add('hide');$('top').classList.add('hide');$('login').classList.remove('hide');$('pw').value=''}
 function load(){api({action:'events',days:+$('days').value}).then(function(j){D=j;render()}).catch(function(e){$('stamp').textContent=e.message})}

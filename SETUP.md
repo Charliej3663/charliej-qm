@@ -21,6 +21,20 @@
 Netlify CLI alternative: `npm i -g netlify-cli`, `netlify login`, `netlify link`, set the variables, `netlify deploy --prod`.
 (Dragging the folder onto Netlify Drop may not install the storage package the functions need, so use GitHub or the CLI.)
 
+## Updating a site that is already online
+1. Unzip the new `charliej-netlify.zip`.
+2. On GitHub open your repository, choose **Add file, Upload files**, drag in everything from the unzipped folder (keep the folders), and **Commit changes**. Same-named files are replaced.
+3. Netlify notices the change and publishes it by itself in about a minute. Your passwords, student list and activity log are NOT touched.
+
+## New in this version
+- **Lectures** tab: all six lectures as slides (and PDF downloads), visible only to signed-in students. After a missed question, **📍 Show me the slide** opens the exact slide with a blinking frame and a notice for a few seconds; **Read the explanation** scrolls to the matching card and makes it blink.
+- **Theme** and **Text** menus (Auto, Light, Dark, Night comfort, Sepia; Normal, Large, Extra large) at the top, remembered on each phone.
+- Phones show a page picker instead of the side menu.
+- The admin panel records which lecture slides students open.
+- The lecture slides are your lecturers' materials. They are shown only behind the sign-in, but make sure your lecturers are happy for you to share them.
+
+- **Exam-style test** (the new default in Test yourself): 5 options A to E, scenario and theory questions like your mock papers, mixed with calculations. It contains the 45 questions from the CIFS Support practice paper plus about 23 more theory questions. Choose "45" questions for a full paper (1 h 21 min).
+
 ## How students get access
 **Way 1, you create them (works from a phone):** admin panel, **Add students**. Type name, ID, group (or paste a whole list, one per line: `Full name, Student ID, Group`). Each student gets a personal code, shown once, with WhatsApp / Telegram / Copy buttons to send it privately.
 

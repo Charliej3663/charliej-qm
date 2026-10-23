@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow"><title>Charliej from WIUT · Sign in</title>
+<meta name="robots" content="noindex, nofollow"><link rel="icon" href="data:,">
+<title>Charliej from WIUT · Sign in</title>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f2f5fb;--card:#fff;--ink:#0f1b33;--mut:#586480;--line:#d9e0ee;--navy:#0a4390;--rose:#d4145a;--ok:#14794a;--okb:#e3f4ec;--tint:#eaf1fb}
-@media(prefers-color-scheme:dark){:root{--bg:#0c1224;--card:#141c34;--ink:#e7ecf9;--mut:#9aa7c7;--line:#26304e;--navy:#8db4ff;--ok:#5fd39a;--okb:#11301f;--tint:#1a2542}}
+:root{--bg:#f2f5fb;--card:#fff;--ink:#0f1b33;--mut:#586480;--line:#d9e0ee;--navy:#0a4390;--rose:#d4145a;--ok:#14794a;--okb:#e3f4ec;--tint:#eaf1fb;--hdr:#0a4390;--hi:#fff;--hb:#6cc3f5;--on:#fff;--link:#0a4390}
+@media(prefers-color-scheme:dark){:root:not([data-theme]){--bg:#0e1322;--card:#161d33;--ink:#e3e8f4;--mut:#a3aec8;--line:#2b3555;--navy:#9dbdf5;--rose:#ff7da0;--ok:#6fdca5;--okb:#12301f;--tint:#1c2644;--hdr:#16264d;--hi:#eef2fb;--hb:#8fd0f7;--on:#0e1322;--link:#a8c8ff}}
+:root[data-theme=dark]{--bg:#0e1322;--card:#161d33;--ink:#e3e8f4;--mut:#a3aec8;--line:#2b3555;--navy:#9dbdf5;--rose:#ff7da0;--ok:#6fdca5;--okb:#12301f;--tint:#1c2644;--hdr:#16264d;--hi:#eef2fb;--hb:#8fd0f7;--on:#0e1322;--link:#a8c8ff}
+:root[data-theme=comfort]{--bg:#17181c;--card:#202228;--ink:#d6d3cb;--mut:#a09d94;--line:#34363d;--navy:#d7b97a;--rose:#e58b9c;--ok:#8fcf9f;--okb:#1f2f25;--tint:#272a31;--hdr:#262932;--hi:#e6e1d6;--hb:#d7b97a;--on:#1b1c20;--link:#e3c88d}
+:root[data-theme=sepia]{--bg:#f1e8d3;--card:#fbf5e6;--ink:#33291c;--mut:#6f6250;--line:#d9ccae;--navy:#7a4a12;--rose:#a8324a;--ok:#2f6b3f;--okb:#e2eed7;--tint:#efe3c6;--hdr:#6b4423;--hi:#fff8ea;--hb:#f2c681;--on:#fff8ea;--link:#7a4a12}
+a{color:var(--link)}@media(max-width:380px){header{padding:20px 12px}.tabs button{padding:12px 4px;font-size:14px}main{padding:14px 10px}.card{padding:16px 14px}}.theme{margin-top:10px;font-size:13px;display:flex;gap:6px;align-items:center}.theme select{max-width:65vw;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:14px;width:auto}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font:16px/1.55 'Bricolage Grotesque',system-ui,sans-serif;display:flex;flex-direction:column}
-header{background:#0a4390;color:#fff;padding:26px 18px}h1{margin:0;font-size:clamp(32px,7vw,54px);line-height:1;font-weight:800;letter-spacing:-.03em}h1 b{color:#6cc3f5;font-weight:600}
+header{background:var(--hdr);color:var(--hi);padding:26px 18px}h1{margin:0;font-size:clamp(32px,7vw,54px);line-height:1;font-weight:800;letter-spacing:-.03em}h1 b{color:var(--hb);font-weight:600}
 header p{margin:6px 0 0;opacity:.85}.w{max-width:480px;margin:0 auto;width:100%}
-main{flex:1;padding:18px 16px}.tabs{display:flex;gap:6px;margin-bottom:12px}.tabs button{flex:1;margin:0;background:var(--card);color:var(--ink);border:1px solid var(--line)}.tabs button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-@media(prefers-color-scheme:dark){.tabs button.on{color:#0c1224}}
+main{flex:1;padding:18px 16px}.tabs{display:flex;gap:6px;margin-bottom:12px}.tabs button{flex:1;margin:0;background:var(--card);color:var(--ink);border:1px solid var(--line)}.tabs button.on{background:var(--navy);color:var(--on);border-color:var(--navy)}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}h2{margin:0 0 4px;font-size:24px}label{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
 input{width:100%;font:inherit;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
 input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #2f9fe0;outline-offset:2px}
-button{margin-top:16px;width:100%;border:0;background:var(--navy);color:#fff;font:inherit;font-weight:600;padding:12px;border-radius:10px;cursor:pointer}
-@media(prefers-color-scheme:dark){button{color:#0c1224}}button:disabled{opacity:.6}button.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+button{margin-top:16px;width:100%;border:0;background:var(--navy);color:var(--on);font:inherit;font-weight:600;padding:12px;border-radius:10px;cursor:pointer}
+button:disabled{opacity:.6}button.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
 .msg{min-height:24px;margin-top:12px;color:var(--rose);font-weight:600}.note{font-size:13px;color:var(--mut);margin-top:12px}.hide{display:none}
 .box{background:var(--tint);border-radius:10px;padding:12px 14px;margin-top:12px}.code{font:800 28px/1.2 ui-monospace,Consolas,monospace;letter-spacing:.06em;background:var(--okb);color:var(--ok);padding:14px;border-radius:10px;text-align:center;margin:10px 0;user-select:all}
 footer{text-align:center;padding:16px;font-size:13px;color:var(--mut)}footer a{color:var(--mut)}
-</style></head><body>
-<header><div class="w"><h1>Charliej <b>from WIUT</b></h1><p>Quantitative Methods · exam preparation</p></div></header>
+</style><script>try{var t=localStorage.getItem("cj_theme");if(t&&t!=="auto")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script></head><body>
+<header><div class="w"><h1>Charliej <b>from WIUT</b></h1><p>Quantitative Methods · exam preparation</p><label class="theme">Theme <select id="theme"><option value="auto">Auto (like my phone)</option><option value="light">Light</option><option value="dark">Dark</option><option value="comfort">Night comfort (soft, warm)</option><option value="sepia">Sepia (paper)</option></select></label></div></header>
 <main><div class="w">
 <div class="tabs"><button id="t1" class="on" type="button">Sign in</button><button id="t2" type="button">Request access</button></div>
 <form class="card" id="f1"><h2>Sign in</h2><div class="note" style="margin:0">Use your own student ID and the personal code you received. The code is only for you.</div>
@@ -43,7 +47,7 @@ function post(u,b){return fetch(u,{method:'POST',headers:{'content-type':'applic
 function tab(n){$('t1').className=n===1?'on':'';$('t2').className=n===2?'on':'';$('f1').classList.toggle('hide',n!==1);$('f2').classList.toggle('hide',n!==2||!!ls('cj_ticket'));$('st').classList.toggle('hide',n!==2||!ls('cj_ticket'));if(n===2&&ls('cj_ticket'))status()}
 $('t1').onclick=function(){tab(1)};$('t2').onclick=function(){tab(2)};
 fetch('/api/me').then(function(r){if(r.ok)location.href='/app'}).catch(function(){});
-var s0=ls('cj_sid');if(s0)$('sid').value=s0;
+var th=ls('cj_theme');if(th)$('theme').value=th;$('theme').onchange=function(){var v=this.value;ls('cj_theme',v);if(v==='auto')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',v)};var s0=ls('cj_sid');if(s0)$('sid').value=s0;
 $('f1').onsubmit=function(e){e.preventDefault();$('go').disabled=true;$('m1').textContent='';
 post('/api/login',{sid:$('sid').value,code:$('code').value}).then(function(x){if(x.ok){ls('cj_sid',$('sid').value.trim());location.href='/app'}else{$('m1').textContent=x.j.error||'Could not sign in.';$('go').disabled=false}}).catch(function(){$('m1').textContent='Network problem. Please try again.';$('go').disabled=false})};
 $('f2').onsubmit=function(e){e.preventDefault();$('rgo').disabled=true;$('m2').textContent='';

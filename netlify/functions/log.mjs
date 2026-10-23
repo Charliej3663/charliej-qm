@@ -1,5 +1,5 @@
 import {json,ipOf,uaOf,clean,session,isBlocked,record} from '../lib/common.mjs';
-const OK=new Set(['app_open','review','test_start','test_finish','leave']);
+const OK=new Set(['app_open','review','test_start','test_finish','leave','slides']);
 export default async (req,ctx)=>{
  try{
   if(req.method!=='POST')return json(405,{error:'Method not allowed'});
